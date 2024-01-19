@@ -36,6 +36,12 @@ h1 {
     font-weight: 400;
     margin-bottom: 20px;
 }
+h2 {
+    color: #ffffff;
+    font-size: 25px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
 .container{
     color: white;
     margin-left: 20px; 

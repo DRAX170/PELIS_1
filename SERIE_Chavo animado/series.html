@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="series.css">
+    <title>Reproductor de Video</title>
+</head>
+<body>
+    <div class="reproductor">
+        <video src="https://storage.googleapis.com/peliculas234/Serie%20de%20chavo%20del%208/01x01%20-%20Los%20globos.mp4" controls id="video" onended="siguienteVideo()">
+        </video>
+        <script>
+        let videos = [{
+                
+                src: 'https://storage.googleapis.com/peliculas234/Serie%20de%20chavo%20del%208/01x02%20-%20El%20insomnio%20del%20Chavo.mp4',
+            },
+            {
+                
+                src: 'https://storage.googleapis.com/peliculas234/Serie%20de%20chavo%20del%208/01x03%20-%20Una%20mosca%20en%20el%20cafe.mp4',
+                
+
+            },
+            {
+                nombre: 'Mahalia - Sober',
+                categoria: 'Música',
+                descripcion: 'La grandiosa cantante británica Mahalia impresiona con su sensual voz en su sensacionalmente suave throwback R&B y su single debut Sober.',
+                src: 'videos/sober.mp4',
+                subtitulos: {
+                    ingles: 'sub/sober.en.vtt',
+                    espanol: 'sub/sober.es.vtt'
+
+                }
+
+
+            },
+        ];
+        var videoActual = null;
+
+        function cargar() {
+
+            videoActual = videos[0];
+
+            for (let i = 0; i < videos.length; i++) {
+
+                let video = videos[i];
+                agregarvideo(video, i);
+            }
+            
+            console.log(video);
+        }
+
+        function cambiarVideo(idVideo) {
+            let nombre = document.getElementById('titulo');
+            let categoria = document.getElementById('categoria');
+            let descripcion = document.getElementById('descripcion');
+            let ing = document.getElementById('subIng');
+            let esp = document.getElementById('subEsp');
+            let video = videos[idVideo];
+            let etiquetaVideo = document.getElementById('video');
+            etiquetaVideo.setAttribute('src', video.src);
+            etiquetaVideo.play();
+            titulo.innerHTML = video.nombre;
+            categoria.innerHTML = video.categoria;
+            descripcion.innerHTML = video.descripcion;
+            subIng.src = video.subtitulos.ingles;
+            subEsp.src = video.subtitulos.espanol;
+            videoActual = video;
+
+
+        }
+
+        function siguienteVideo() {
+
+            let indiceActual = videos.indexOf(videoActual);
+            let numeroVideos = videos.length;
+            let idVideoNuevo;
+
+            if (indiceActual < numeroVideos - 1) {
+
+                idVideoNuevo = indiceActual + 1;
+
+            } else {
+
+                idVideoNuevo = 0;
+
+            }
+
+            cambiarVideo(idVideoNuevo);
+
+        }
+
+        window.onload = cargar();
+    </script>
+</body>
+</html>
